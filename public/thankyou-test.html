@@ -1,1 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>event_id Test</title>
+</head>
+<body>
+  <h2>event_id Test Sender</h2>
+  <button id="send">Send Test</button>
 
+  <script>
+    document.getElementById("send").addEventListener("click", () => {
+      const data = {
+        event_id: "ev-" + Math.random().toString(36).slice(2),
+        order_id: "TEST-ORDER-001",
+        note: "✅ Vercelテスト送信"
+      };
+
+      fetch("/api/purchase", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      })
+      .then(res => res.ok ? res.json() : Promise.reject(res))
+      .then(data => alert("✅ 成功: " + JSON.stringify(data)))
+      .catch(err => alert("❌ エラー: " + err));
+    });
+  </script>
+</body>
+</html>
