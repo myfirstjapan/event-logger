@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>event_id Test</title>
+  <title>GAS送信テスト</title>
 </head>
 <body>
   <h2>event_id Test Sender</h2>
@@ -13,10 +13,11 @@
       const data = {
         event_id: "ev-" + Math.random().toString(36).slice(2),
         order_id: "TEST-ORDER-001",
-        note: "✅ Vercelテスト送信"
+        note: "✅ GASテスト送信"
       };
 
-      fetch("/api/purchase", {
+      // ✅ あなたのGAS WebアプリURLに置き換えてください
+      fetch("https://script.google.com/macros/s/AKfycbwTSztuJBHRi2D_C_3SILGpxD1rbxpVRvL5siZWQx0l2B1enVn8-cCV6RcKdxSWJxH0/exec", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)
